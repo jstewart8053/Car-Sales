@@ -1,9 +1,11 @@
 import React from 'react';
-
+import { connect } from "react-redux";
+import { removeFeature, addFeature } from './Actions'
 import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
+import { reducer } from './Reducers'
 
 const App = () => {
   const state = {
@@ -36,5 +38,14 @@ const App = () => {
     </div>
   );
 };
+function mapStateToProps(state) {
+  return {
+    car: state.car,
+    additionalPrice: state.additionalPrice,
+    additionalFeatures: state.additionalFeatures
+  }
 
-export default App;
+}
+
+
+export default connect(mapStateToProps, { removeFeature, addFeature })(App);
